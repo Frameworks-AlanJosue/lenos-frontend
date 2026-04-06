@@ -1,0 +1,125 @@
+.estado-page { min-height: 100vh; padding-top: 88px; background: var(--crema); }
+.estado-wrap { padding: 48px 24px 80px; max-width: 720px; }
+
+.estado-titulo {
+  font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700; color: var(--cafe); margin-bottom: 6px;
+}
+.estado-id { font-size: 13px; color: var(--gris); font-weight: 700; letter-spacing: 1px; margin-bottom: 40px; }
+
+/* ── Barra de progreso ─────────────────────────────────────────────────────── */
+.progreso {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  position: relative;
+}
+.progreso__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  position: relative;
+}
+.progreso__dot {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  background: var(--blanco);
+  border: 3px solid var(--gris-claro);
+  color: var(--gris);
+  transition: all .3s ease;
+  z-index: 2;
+}
+.progreso__dot.pasado {
+  background: var(--verde); border-color: var(--verde);
+  color: var(--blanco); font-size: 18px; font-weight: 700;
+}
+.progreso__dot.activo {
+  background: var(--amber); border-color: var(--amber);
+  color: var(--blanco);
+  box-shadow: 0 0 0 6px rgba(224,123,42,.2);
+  animation: pulse 2s ease infinite;
+}
+.progreso__label {
+  font-size: 11px; font-weight: 700; text-align: center;
+  color: var(--gris); letter-spacing: .5px; line-height: 1.3;
+  max-width: 72px;
+}
+.progreso__label.activo { color: var(--amber); }
+.progreso__linea {
+  position: absolute;
+  top: 26px;
+  left: calc(50% + 28px);
+  right: calc(-50% + 28px);
+  height: 3px;
+  background: var(--gris-claro);
+  z-index: 1;
+  transition: background .4s;
+}
+.progreso__linea.pasado { background: var(--verde); }
+
+/* ── Tarjeta de estado ─────────────────────────────────────────────────────── */
+.estado-card {
+  background: var(--cafe);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.estado-card--cancelado { background: #B71C1C; }
+.estado-card__emoji { font-size: 52px; margin-bottom: 12px; }
+.estado-card__titulo {
+  font-family: var(--font-display); font-size: 28px; font-weight: 700;
+  color: var(--caramel-claro); margin-bottom: 10px;
+}
+.estado-card__desc { font-size: 16px; color: rgba(255,255,255,.75); line-height: 1.6; }
+.estado-card__repartidor {
+  margin-top: 20px; padding: 12px 20px;
+  background: rgba(255,255,255,.1); border-radius: var(--radius-sm);
+  font-size: 14px; color: rgba(255,255,255,.85);
+}
+
+/* ── Detalle ────────────────────────────────────────────────────────────────── */
+.estado-detalle {
+  background: var(--blanco); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow-sm); margin-bottom: 28px;
+}
+.estado-detalle__titulo {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  color: var(--cafe); margin-bottom: 18px;
+}
+.estado-detalle__cliente {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 20px;
+  padding-bottom: 20px; border-bottom: 2px solid var(--gris-claro);
+}
+.estado-detalle__cliente div {
+  font-size: 14px; color: var(--gris); display: flex; align-items: center; gap: 8px;
+}
+.estado-detalle__cliente span { font-size: 16px; }
+
+.estado-detalle__tabla { width: 100%; border-collapse: collapse; font-size: 14px; }
+.estado-detalle__tabla th {
+  text-align: left; padding: 10px 12px;
+  background: var(--crema-osc); color: var(--cafe-medio);
+  font-size: 12px; letter-spacing: .5px; text-transform: uppercase; font-weight: 700;
+}
+.estado-detalle__tabla td { padding: 12px; border-bottom: 1px solid var(--gris-claro); color: var(--texto); }
+.estado-detalle__tabla tfoot td {
+  font-size: 15px; border-bottom: none; border-top: 2px solid var(--gris-claro);
+  color: var(--cafe);
+}
+
+/* ── Acciones ───────────────────────────────────────────────────────────────── */
+.estado-acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.estado-acciones .btn { flex: 1; min-width: 140px; }
+.estado-nota { font-size: 12px; color: var(--gris); text-align: center; animation: pulse 3s ease infinite; }
+
+@media (max-width: 560px) {
+  .estado-detalle__cliente { grid-template-columns: 1fr; }
+  .progreso__label { display: none; }
+}

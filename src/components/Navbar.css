@@ -1,0 +1,52 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background .3s, box-shadow .3s;
+}
+.navbar--transparent {
+  background: transparent;
+}
+.navbar--solid {
+  background: var(--cafe);
+  box-shadow: 0 2px 20px rgba(0,0,0,.25);
+}
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar__icon { font-size: 22px; }
+.navbar__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blanco);
+  letter-spacing: .3px;
+}
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar__link {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  transition: all .18s;
+}
+.navbar__link:hover { color: var(--blanco); background: rgba(255,255,255,.12); }
+.navbar__link--admin {
+  background: var(--amber);
+  color: var(--blanco);
+  padding: 8px 20px;
+}
+.navbar__link--admin:hover { background: var(--caramel); }
