@@ -7,8 +7,9 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://localhost',
         changeOrigin: true,
+        secure: false, // Permitir certificado auto-firmado
       }
     }
   }

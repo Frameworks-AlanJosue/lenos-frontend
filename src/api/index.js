@@ -1,6 +1,31 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api' })
+const api = axios.create({ 
+  baseURL: import.meta.env.VITE_API_URL || '/api' 
+})
+
+// ── Interceptor para el Token JWT y API Key ──────────────────────────────────
+api.interceptors.request.use((config) => {
+  // Inyectar Token JWT
+  const token = localStorage.getItem('lenos_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+
+  // Inyectar API Key para seguridad en producción
+  const apiKey = import.meta.env.VITE_API_KEY
+  if (apiKey) {
+    config.headers['x-api-key'] = apiKey
+  }
+
+  return config
+}, (error) => {
+  return Promise.reject(error)
+})
+
+// ── Autenticación ────────────────────────────────────────────────────────────
+export const signup = (data) => api.post('/v1/usuario/signup', data)
+export const login  = (data) => api.post('/v1/usuario/login',  data)
 
 // ── Productos ──────────────────────────────────────────────────────────────
 export const getProductos = (params) => api.get('/productos', { params })
