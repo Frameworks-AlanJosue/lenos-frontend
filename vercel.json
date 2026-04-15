@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(api|v1)/(.*)",
-      "destination": "https://lenos-backend-production.up.railway.app/$1/$2"
+      "destination": "https://lenos-backend.onrender.com/$1/$2"
     },
     {
       "source": "/(.*)",
