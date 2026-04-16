@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './ComentarioForm.css';
+import { crearComentario } from '../api';
 
 function ComentarioForm() {
   const [texto, setTexto] = useState('');
@@ -12,20 +13,15 @@ function ComentarioForm() {
     if (!texto.trim()) return;
 
     setCargando(true);
-    setMostrarInseguro(false);
+    setRespuesta(null);
 
     try {
-      const res = await fetch('/api/v1/comentarios', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ texto })
-      });
-
-      const data = await res.json();
-      setRespuesta(data);
+      const res = await crearComentario({ texto });
+      setRespuesta({ ok: true, ...res.data });
       setTexto('');
     } catch (error) {
-      setRespuesta({ ok: false, error: 'Error al enviar: ' + error.message });
+      const errorMsg = error.response?.data?.error || error.message;
+      setRespuesta({ ok: false, error: 'Error al enviar: ' + errorMsg });
     } finally {
       setCargando(false);
     }

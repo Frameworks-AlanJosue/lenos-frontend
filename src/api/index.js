@@ -44,4 +44,7 @@ export const ajustarStock  = (data) => api.post('/inventario/ajuste', data)
 // ── Usuarios ───────────────────────────────────────────────────────────────
 export const getUsuarios   = (params) => api.get('/usuarios', { params })
 
+// ── Comentarios ─────────────────────────────────────────────────────────────
+export const crearComentario = (data) => api.post('/v1/comentarios', data)
+
 export default api
